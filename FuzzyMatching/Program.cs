@@ -76,7 +76,7 @@ namespace FuzzyMatching
                                                            bestProductIndex = i;
                                                        }
                                                    }
-                                                   if (bestProductScore > 10)
+                                                   if (bestProductScore > 8)
                                                        products[bestProductIndex].Listings.Add(listing);
                                                });
                 //Serialize products to file

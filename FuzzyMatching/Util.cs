@@ -5,8 +5,8 @@ using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web.Script.Serialization;
 using System;
+using Newtonsoft.Json;
 
 namespace FuzzyMatching
 {
@@ -97,7 +97,6 @@ namespace FuzzyMatching
         }
         public static void SerializeObjects(string fileName, List<Product> products)
         {
-            var jss = new JavaScriptSerializer();
             var json = new List<string>();
             foreach (var product in products)
             {
@@ -108,7 +107,7 @@ namespace FuzzyMatching
                         new { title = l.Title, currency = l.Currency, price = l.Price, manufacturer = l.Manufacturer };
                     serializeObj.listings.Add(listing);
                 }
-                json.Add(jss.Serialize(serializeObj));
+                json.Add(JsonConvert.SerializeObject(product));
             }
             File.WriteAllLines(fileName, json);
         }
